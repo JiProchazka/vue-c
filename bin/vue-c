@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+
+require 'vue-c'
+VueC.generate(ARGV[0])
