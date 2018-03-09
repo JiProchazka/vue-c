@@ -1,3 +1,5 @@
+require 'pry'
+
 class String
   def kebab
     self.gsub(/::/, '/').
@@ -5,6 +7,11 @@ class String
     gsub(/([a-z\d])([A-Z])/,'\1_\2').
     tr("_", "-").
     downcase
+  end
+
+  def capitalize_first
+    self[0] = self[0].capitalize
+    self
   end
 
   def camel
