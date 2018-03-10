@@ -1,6 +1,7 @@
 require 'string'
 require 'erb'
 require 'fileutils'
+require 'json'
 
 class VueC
   def self.generate(args)
@@ -12,6 +13,8 @@ class VueC
     relative_file_path = File.join("src", path.split('/').reverse.drop(1).reverse.join('/'), file)
     absolute_folder_path = File.join(Dir.getwd, relative_folder_path)
     absolute_file_path = File.join(absolute_folder_path, file)
+
+    load_configuration
 
     @name = name.kebab
     template = File.read("#{__dir__}/template.html.erb")
@@ -40,5 +43,13 @@ class VueC
 
   def self.create_dir_if_needed folder
     FileUtils.mkdir_p(folder)
+  end
+
+  def self.load_configuration
+    config_file_path = File.join(Dir.getwd, '.vue-c')
+    if File.exists? config_file_path
+      json = JSON.parse(File.read(config_file_path))
+      @styles_lang = json['style[lang]']
+    end
   end
 end
