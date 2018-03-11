@@ -20,6 +20,14 @@ You can set the `lang` attribute of the generated `style` tag by setting json:
 }
 ```
 
+```json
+// will generate automatically add 'mag' prefix to generated controller name ('mag-button')
+// and file name ('MagButton') when called 'vue-c button'
+{
+  "auto-prefix":"mag"
+}
+```
+
 ## Using
 
     $ vue-c components/RedButton

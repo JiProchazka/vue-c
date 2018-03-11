@@ -7,14 +7,14 @@ class VueC
   def self.generate(args)
     path = args
 
-    name = path.split('/').last.capitalize_first
+    load_configuration
+
+    name = "#{@auto_prefix.capitalize}#{path.split('/').last.capitalize_first}"
     file = "#{name}.vue"
     relative_folder_path = File.join("src", path.split('/').reverse.drop(1).reverse.join('/'))
     relative_file_path = File.join("src", path.split('/').reverse.drop(1).reverse.join('/'), file)
     absolute_folder_path = File.join(Dir.getwd, relative_folder_path)
     absolute_file_path = File.join(absolute_folder_path, file)
-
-    load_configuration
 
     @name = name.kebab
     template = File.read("#{__dir__}/template.html.erb")
@@ -50,6 +50,11 @@ class VueC
     if File.exists? config_file_path
       json = JSON.parse(File.read(config_file_path))
       @styles_lang = json['style[lang]']
+      @auto_prefix = json['auto-prefix']
+
+      unless @auto_prefix.nil?
+        puts "Autoprefixed with '#{@auto_prefix.capitalize}'"
+      end
     end
   end
 end
