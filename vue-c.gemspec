@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'vue-c'
-  s.version     = '0.5.1'
+  s.version     = '0.5.2'
   s.date        = '2012-03-09'
   s.summary     = "Vue component generator"
   s.description = "Vue component generator"

@@ -9,7 +9,7 @@ class VueC
 
     load_configuration
 
-    name = "#{@auto_prefix.capitalize}#{path.split('/').last.capitalize_first}"
+    name = "#{@auto_prefix}#{path.split('/').last.capitalize_first}"
     file = "#{name}.vue"
     relative_folder_path = File.join("src", path.split('/').reverse.drop(1).reverse.join('/'))
     relative_file_path = File.join("src", path.split('/').reverse.drop(1).reverse.join('/'), file)
@@ -53,7 +53,8 @@ class VueC
       @auto_prefix = json['auto-prefix']
 
       unless @auto_prefix.nil?
-        puts "Autoprefixed with '#{@auto_prefix.capitalize}'"
+        @auto_prefix = @auto_prefix.capitalize
+        puts "Autoprefixed with '#{@auto_prefix}'"
       end
     end
   end
