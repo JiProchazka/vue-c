@@ -9,14 +9,14 @@ class VueC
 
     load_configuration
 
-    name = path.split('/').last.capitalize_first}
+    name = path.split('/').last.capitalize_first
     file = "#{name}.vue"
     relative_folder_path = File.join("src", path.split('/').reverse.drop(1).reverse.join('/'))
     relative_file_path = File.join("src", path.split('/').reverse.drop(1).reverse.join('/'), file)
     absolute_folder_path = File.join(Dir.getwd, relative_folder_path)
     absolute_file_path = File.join(absolute_folder_path, file)
 
-    @name = "#{@auto_prefix}#{name.kebab}"
+    @name = "#{@auto_prefix}#{name}".kebab
     template = File.read("#{__dir__}/template.html.erb")
     ERB.new(template, 0, "", "@content").result(binding)
 
